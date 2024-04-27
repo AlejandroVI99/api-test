@@ -33,6 +33,7 @@ COPY . .
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
+RUN bundle exec rails runner db/scripts/insert_restaurants.rb
 
 # Final stage for app image
 FROM base
@@ -52,6 +53,7 @@ RUN useradd rails --create-home --shell /bin/bash && \
 USER rails:rails
 
 # Entrypoint prepares the database.
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
