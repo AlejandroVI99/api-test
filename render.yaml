@@ -1,7 +1,5 @@
 databases:
-  - name: api-test
-    databaseName: api-test
-    user: api-test
+  - name: postgres
     plan: free
 
 services:
